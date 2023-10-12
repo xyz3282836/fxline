@@ -10,6 +10,8 @@ import (
 	"go.uber.org/fx"
 	// "go.uber.org/fx/fxevent"
 	"go.uber.org/zap"
+
+	_ "net/http/pprof"
 )
 
 func main() {
@@ -21,6 +23,8 @@ func main() {
 		fx.Provide(
 			other.NewOtherOne,
 			other.NewOtherTwo,
+			// 非匿名实例的func如何调用？
+			// fx.Annotated{Name: "two", Target: other.NewOtherTwo},
 
 			NewHTTPServer,
 			// handler.NewEchoHandler,
